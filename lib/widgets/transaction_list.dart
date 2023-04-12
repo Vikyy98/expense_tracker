@@ -12,15 +12,18 @@ class TransactionList extends StatelessWidget {
     return Container(
       height: 543,
       child: userTransaction.isEmpty
-          ? Column(
-              children: [
-                Text("No items added",
-                    style: Theme.of(context).textTheme.headline6),
-                Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Image.network('https://picsum.photos/250?image=9'))
-              ],
-            )
+          ? LayoutBuilder(builder: (ctx, constraints) {
+              return Column(
+                children: [
+                  Text("No items added",
+                      style: Theme.of(context).textTheme.headline6),
+                  Container(
+                      height: constraints.maxHeight * 0.7,
+                      margin: EdgeInsets.only(top: 10),
+                      child: Image.network('https://picsum.photos/250?image=9'))
+                ],
+              );
+            })
           : ListView.builder(
               itemBuilder: (context, index) {
                 return Card(

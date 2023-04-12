@@ -18,7 +18,7 @@ class _NewTransactionsEntriesState extends State<NewTransactionsEntries> {
     String itemToAdd = _itemFieldController.text;
     double priceToAdd = double.parse(_costFieldController.text);
 
-    if (itemToAdd.isEmpty || priceToAdd <= 0) {
+    if (itemToAdd.isEmpty || priceToAdd <= 0 || _pickedDate == null) {
       return;
     }
 
