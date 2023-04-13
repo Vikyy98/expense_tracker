@@ -47,50 +47,57 @@ class _NewTransactionsEntriesState extends State<NewTransactionsEntries> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              style: TextStyle(fontSize: 18),
-              controller: _itemFieldController,
-              decoration: InputDecoration(labelText: 'Please enter items'),
-              keyboardType: TextInputType.text,
-              onSubmitted: (_) => _submitItems(),
-            ),
-            TextField(
-              style: TextStyle(fontSize: 18),
-              controller: _costFieldController,
-              decoration: InputDecoration(labelText: 'Please enter the price'),
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => _submitItems(),
-            ),
-            Container(
-              height: 50,
-              margin: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(_pickedDate == null
-                      ? "No date chosen"
-                      : 'Picked Date: ${DateFormat.yMd().format(_pickedDate)}'),
-                  TextButton(
-                    child: Text(
-                      "Add Date",
-                      style: TextStyle(
-                          color: Colors.amber, fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: _openDatePicker,
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                style: TextStyle(fontSize: 18),
+                controller: _itemFieldController,
+                decoration: InputDecoration(labelText: 'Please enter items'),
+                keyboardType: TextInputType.text,
+                onSubmitted: (_) => _submitItems(),
               ),
-            ),
-            ElevatedButton(
-                onPressed: _submitItems, child: Text('Add transaction'))
-          ],
+              TextField(
+                style: TextStyle(fontSize: 18),
+                controller: _costFieldController,
+                decoration:
+                    InputDecoration(labelText: 'Please enter the price'),
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => _submitItems(),
+              ),
+              Container(
+                height: 50,
+                margin: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(_pickedDate == null
+                        ? "No date chosen"
+                        : 'Picked Date: ${DateFormat.yMd().format(_pickedDate)}'),
+                    TextButton(
+                      child: Text(
+                        "Add Date",
+                        style: TextStyle(
+                            color: Colors.amber, fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: _openDatePicker,
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: _submitItems, child: Text('Add transaction'))
+            ],
+          ),
         ),
       ),
     );

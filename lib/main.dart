@@ -102,8 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLandScape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+    final isLandScape = mediaQuery.orientation == Orientation.landscape;
     final appBar = AppBar(
       title: Text('Expense Calculator'),
       actions: [
@@ -113,9 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
     final chartWidget = Container(
-        height: (MediaQuery.of(context).size.height -
+        height: (mediaQuery.size.height -
                 appBar.preferredSize.height -
-                MediaQuery.of(context).padding.top) *
+                mediaQuery.padding.top) *
             0.8,
         child: TransactionList(transactions, deleteItemsInList));
     return Scaffold(
@@ -140,17 +140,17 @@ class _MyHomePageState extends State<MyHomePage> {
               if (isLandScape)
                 _ShowChart
                     ? Container(
-                        height: (MediaQuery.of(context).size.height -
+                        height: (mediaQuery.size.height -
                                 appBar.preferredSize.height -
-                                MediaQuery.of(context).padding.top) *
+                                mediaQuery.padding.top) *
                             0.5,
                         child: Charts(recentTransactionsForChart))
                     : chartWidget,
               if (!isLandScape)
                 Container(
-                    height: (MediaQuery.of(context).size.height -
+                    height: (mediaQuery.size.height -
                             appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
+                            mediaQuery.padding.top) *
                         0.2,
                     child: Charts(recentTransactionsForChart)),
               if (!isLandScape) chartWidget
